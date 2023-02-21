@@ -1,0 +1,573 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'scholarship.css' %}">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <style>
+      .card-header{
+        background-color:rgb(88,119,119);
+        color: white;
+      }
+      .card-header h5 {
+        margin: 0;
+        font-weight: bold;
+      }
+      .card-body {
+        padding: 1.25rem;
+        background-color: white;
+      }
+      .card-body p {
+        margin: 0;
+        font-size: 14px;
+      }
+      a{
+        color:white;
+        
+      }
+      
+      
+    </style>
+    <title>Scholarships</title>
+  </head>
+
+  <body>
+
+
+<!-- navigationbar -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: black">
+  <a class="navbar-brand" href="#" style="color:white;">LeverageGuild</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link active " style="color: white;" href="{% url 'Login:home' %}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="color: white;"  href="{% url 'Login:scholarship' %}">Scholarship</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="color: white;"  href="{% url 'Login:university' %}">University</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="color: white;"  href="{% url 'Login:about' %}">About</a>
+      </li>
+      {% if user.is_authenticated %}
+      <div class="dropdown">
+        <a href="#" style="color:white;" class="nav-item nav-link" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{user.username}} <i class="fas fa-user sun-icon"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="user-dropdown">
+          <a class="nav-link btn dropdown-item" href="{% url 'sprofile:edit_profile' %}" style="color: black;">View Profile</a>
+          <a class="nav-link btn dropdown-item" href="#" onclick="location.href='/logout';" style="color:black;">Logout</a>
+        </div>
+      </div>
+      {% else %}
+      <li class="nav-item mx-1"></li>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link btn " href="{% url 'Login:SignUp' %}" style="color: white; background-color:rgb(88, 119, 119); margin-right:4px;">Signup</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link btn " href="{% url 'Login:Login' %}" style="color: white; background-color:rgb(88, 119, 119)">Login</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="ml-auto">
+    <i class="fas fa-sun sun-icon ml-2"></i>
+  </div>
+</nav>
+
+<!-- navigationbar -->
+<!-- Navigation Bar -->
+<div class="container-fluid mt-5">
+  <h1 class="text-center">Scholarships</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-3 ">
+        <div class="card-header heads">
+          <h5>Griffith Remarkable Scholarship</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+            <p></p>
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button"  id="send-message-button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            {% csrf_token %}
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:griffin_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>Ottawa Differentials</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:ottawa_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>Deep Minds Scholarship</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>Amity's Sports Scholarship</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:amity_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>BITS Scholar Program</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:bits_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>IISC Merit Scholarship</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:iis_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>UIUC Champaign Scholar Program</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:uuic_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>Parul University Fees Help Scholarship</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:parul_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5>University of Auckland Oceania Scholarship</h5>
+        </div>
+        <div class="card-body d-flex">
+          <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+          <div class="ml-3 d-flex flex-column justify-content-between">
+          </div>
+          <div class="ml-auto d-flex flex-column align-items-end">
+            <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+            <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:auckland_s' %}">View More</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Griffith's deans list </h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:ottawa_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Griffith's international schoalr </h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Ottawa university, Academic support </h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Ottawa university, tomorrow's leader</h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Queens Mary Uni, champion scholarship</h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Queens Mary Uni, Knight scholar </h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Amity University Academic scholarship </h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>UIUC, Oosegood Scholar</h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dark">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dark mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header">
+              <h5>Parul University, Sport schoalrship</h5>
+            </div>
+            <div class="card-body d-flex">
+              <img src="https://img.freepik.com/free-vector/books-with-money-loans-scholarships_603843-826.jpg?w=900&t=st=1676701155~exp=1676701755~hmac=8188a98779355913bdd3c06f48a8b5f0103d7690a14e88bee7b0ced253bee786" class="h-50 w-50" alt="">
+              <div class="ml-3 d-flex flex-column justify-content-between">
+              </div>
+              <div class="ml-auto d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-secondary bg-dar">Expire in <br> 28 days</button>
+                <button type="button" class="btn btn-secondary bg-dar mt-auto" style="margin-bottom:0"><a href="{% url 'Login:queen_s' %}">View More</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+<br>
+<br>
+
+    <!--footer -->
+    <div class= "foot" style="margin-left:-15px;margin-right:-15px">
+      <!-- Footer -->
+      <footer
+              class="text-center text-lg-start text-white foot"
+              style="background-color: black"
+              >
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+          <!-- Section: Links -->
+          <section class="">
+            <!--Grid row-->
+            <div class="row">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">
+                  LeverageGuild
+                </h6>
+                <p>We are a student portal dedicated to providing students with the best resources and information. Contact us for more information.</p>
+  
+              </div>
+              <!-- Grid column -->
+    
+              <hr class="w-100 clearfix d-md-none" />
+    
+              <!-- Grid column -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">services</h6>
+                <p>
+                  <a class="text-white">Scholarships</a>
+                </p>
+                <p>
+                  <a class="text-white">Universities</a>
+                </p>
+                <p>
+                  <a class="text-white">about us</a>
+                </p>
+              
+              </div>
+              <!-- Grid column -->
+    
+              <hr class="w-100 clearfix d-md-none" />
+    
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">
+                  Useful links
+                </h6>
+                <p>
+                  <a class="text-white">Your Account</a>
+                </p>
+                <p>
+                  <a class="text-white">Create Account</a>
+                </p>
+                
+                <p>
+                  <a class="text-white">Help</a>
+                </p>
+              </div>
+    
+              <!-- Grid column -->
+              <hr class="w-100 clearfix d-md-none" />
+    
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                <p><i class="fas fa-home mr-3"></i>Parul university</p>
+                <p><i class="fas fa-envelope mr-3"></i> LeverageGuild@gmail.com</p>
+                <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+                
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!--Grid row-->
+          </section>
+          <!-- Section: Links -->
+    
+          <hr class="my-3">
+    
+          <!-- Section: Copyright -->
+          <section class="p-3 pt-0">
+            <div class="row d-flex align-items-center">
+              <!-- Grid column -->
+              <div class="col-md-7 col-lg-8 text-center text-md-start">
+                <!-- Copyright -->
+                <div class="p-6">
+                  © 2023 Copyright:
+                  <a class="text-white" href="index.html"
+                     >LeverageGuild</a
+                    >
+                </div>
+                <!-- Copyright -->
+              </div>
+              <!-- Grid column -->
+    
+              <!-- Grid column -->
+              <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                <!-- Facebook -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-facebook-f"></i
+                  ></a>
+    
+                <!-- Twitter -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-twitter"></i
+                  ></a>
+    
+                <!-- Google -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-google"></i
+                  ></a>
+    
+                <!-- Instagram -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-instagram"></i
+                  ></a>
+              </div>
+              <!-- Grid column -->
+            </div>
+          </section>
+          <!-- Section: Copyright -->
+        </div>
+        <!-- Grid container -->
+      </footer>
+      <!-- Footer -->
+    </div>
+    <!-- End of .container -->
+    <!--footer -->
+  <!-- Optional JavaScript -->
+  <script src="{% static 'home.js' %}"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/4378b71530.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  
+  <script
+  src="https://code.jquery.com/jquery-3.6.3.js"
+  integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+  crossorigin="anonymous"></script>
+
+  <script>
+    var $j = jQuery.noConflict();
+   $j(document).ready(function() {
+ $j("#send-message-button").on("click", function() {
+   
+   $j.ajax({
+     url: "/send_message/",
+     type: "POST",
+     data: {
+       'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+     },
+     success: function(data) {
+       alert("Message sent successfully!");
+     },
+     error: function() {
+       alert("There was an error sending the message.");
+     }
+   });
+ });
+});
+
+   </script> 
+  
+</body>
+  </body>
+</html>
