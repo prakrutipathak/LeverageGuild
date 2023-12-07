@@ -18,7 +18,7 @@ env\Scripts\Activate.bat
 
 Step 3: Clone 
 ```bash
-git clone https://github.com/sojitra-nency/LeverageGuild.git
+git clone https://github.com/prakrutipathak/LeverageGuild.git
 ``` 
 Step 4: Install all the Packages: After Activating the Virtual Environment. For installing all the packages used for the development of this project (Note: requirements.txt will be included in the project folder.).
 ```bash
